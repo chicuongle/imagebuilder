@@ -15,11 +15,10 @@ RUN apt-get update\
     && apt-get clean 
 
 RUN echo "alias ll='ls -l'" >> $HOME/.bashrc\
-    && mv /tmp/git-completion.bash /home/$user/ \
-    && echo "source /home/$user/git-completion.bash" >> $HOME/.bashrc\
     && git config --global user.email $email\
     && git config --global user.name $user\
-    && git config --global push.default simple
+    && git config --global push.default simple\ 
+    && 
 
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
