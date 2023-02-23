@@ -1,0 +1,1 @@
+Images have java and nodejs based technology

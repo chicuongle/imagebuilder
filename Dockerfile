@@ -11,15 +11,16 @@ RUN apt-get update\
     && apt-get install -y curl unzip zip vim wget screen less sudo libxml2-utils git git-flow zsh\
     # add default user
     && useradd -ms /bin/bash $user && echo "$user:$password" | chpasswd && adduser $user sudo \
+    && echo "$user   ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
     # Clean up APT when done.
     && apt-get clean 
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+USER $user
 
 RUN echo "alias ll='ls -l'" >> $HOME/.bashrc\
     && git config --global user.email $email\
     && git config --global user.name $user\
-    && git config --global push.default simple\ 
-    && 
+    && git config --global push.default simple
 
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-WORKDIR /workspace
+WORKDIR /workspaces
