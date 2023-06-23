@@ -1,0 +1,4 @@
+#!/usr/bin/dumb-init /bin/bash
+
+
+exec apache2ctl -D FOREGROUND
