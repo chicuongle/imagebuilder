@@ -3,7 +3,7 @@ FROM debian:12-slim
 ADD entrypoint /tmp/
 
 RUN apt-get update \
-    && apt-get install -y wget curl openssl apache2 apache2-doc apache2-utils dumb-init less certbot\
+    && apt-get install -y wget curl openssl apache2 apache2-doc apache2-utils dumb-init less certbot python3-certbot-apache\
 # ENTRYPOINT
     && mv /tmp/entrypoint /usr/bin/entrypoint \
  		&& chmod +x /usr/bin/entrypoint \
