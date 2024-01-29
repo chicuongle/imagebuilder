@@ -5,9 +5,9 @@ LABEL description="developement image for all spa projects based on java and nod
 ARG user
 
 
-RUN sudo sh -c "$(curl -fsSL https://deb.nodesource.com/setup_19.x)" \
+RUN sudo sh -c "$(curl -fsSL https://deb.nodesource.com/setup_21.x)" \
     && sudo apt-get install -y nodejs \
-    && sudo npm install --unsafe-perm -g @angular/cli@latest npm@latest gulp bower grunt grunt-cli yeoman-generator yo generator-angular generator-karma generator-webapp serve 
+    && sudo npm install --unsafe-perm -g @angular/cli@latest npm yarn gulp bower grunt grunt-cli yeoman-generator yo generator-angular generator-karma generator-webapp serve 
 
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
     && git clone https://github.com/gradle/gradle-completion ~/.oh-my-zsh/plugins/gradle-completion 
