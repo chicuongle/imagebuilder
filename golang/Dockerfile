@@ -10,24 +10,24 @@ RUN curl -o /tmp/golang_${golang_version}.tar.gz -L "https://go.dev/dl/go${golan
     && export PATH=$PATH:/usr/local/go/bin \
     && apt update \
     && apt install -y gcc
-RUN mkdir -p /workspaces/GoLang \
-    && chown -R $user:$user /workspaces
+RUN mkdir -p /GoLang \
+    && chown -R $user:$user /GoLang
 
 
 USER $user
 RUN echo "export PATH=$PATH:/usr/local/go/bin" >> $HOME/.bashrc\
-    && echo "export GOPATH=/workspaces/GoLang" >> $HOME/.bashrc\
+    && echo "export GOPATH=/GoLang" >> $HOME/.bashrc\
     && echo "export GOBIN=\$GOPATH/bin" >> $HOME/.bashrc \
     && echo "export PATH=$PATH:/usr/local/go/bin" >> $HOME/.profile \
-    && echo "export GOPATH=/workspaces/GoLang" >> $HOME/.profile\
+    && echo "export GOPATH=/GoLang" >> $HOME/.profile\
     && echo "export GOBIN=\$GOPATH/bin" >> $HOME/.profile \
-    && curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh \
+    && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
     && echo "export PATH=$PATH:/usr/local/go/bin" >> $HOME/.zshrc\
-    && echo "export GOPATH=/workspaces/GoLang" >> $HOME/.zshrc\
+    && echo "export GOPATH=/GoLang" >> $HOME/.zshrc\
     && echo "export GOBIN=\$GOPATH/bin" >> $HOME/.zshrc 
 
 RUN export PATH=$PATH:/usr/local/go/bin \
-    && export GOPATH=/workspaces/GoLang \
+    && export GOPATH=/GoLang \
     && export GOBIN=$GOPATH/bin \
     && go install 'github.com/fatih/gomodifytags@v1.16.0' \
     && go install 'github.com/haya14busa/goplay/cmd/goplay@v1.0.0' \
